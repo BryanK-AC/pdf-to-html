@@ -1,14 +1,17 @@
 <?php
-use Gufy\PdfToHtml\Pdf,
- Gufy\PdfToHtml\Config;
 
-class PdfInfoTest extends PHPUnit_Framework_TestCase
+namespace Tests;
+
+use AccuCloud\PdfToHtml\Pdf;
+use AccuCloud\PdfToHtml\Config;
+
+class PdfInfoTest extends \PHPUnit\Framework\TestCase
 {
-  public function setUp(){
+  public function setUp() : void {
     parent::setUp();
 
-    Config::set('pdfinfo.bin', '/usr/bin/pdfinfo');
-    Config::set('pdftohtml.bin', '/usr/bin/pdftohtml');
+    Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
+    Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
   }
   public function testGetOptions()
   {
@@ -20,7 +23,7 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
   {
     $file = dirname(__FILE__).'/source/test.pdf';
     $pdf = new Pdf($file);
-    $html = $pdf->getDom();
+    //$html = $pdf->getDom();
     $this->assertArrayHasKey('pages', $pdf->getInfo());
   }
   public function testChangePage()

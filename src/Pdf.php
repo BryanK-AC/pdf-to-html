@@ -1,6 +1,9 @@
 <?php
 
-namespace Gufy\PdfToHtml;
+namespace AccuCloud\PdfToHtml;
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Pdf
 {
@@ -28,12 +31,22 @@ class Pdf
     protected function info()
     {
 
-        if (PHP_OS === 'WINNT') {
+        $process = new Process(array($this->bin(), $this->file));
+
+        /* if (PHP_OS === 'WINNT') {
             $content = shell_exec('"'.$this->bin().'" "'.$this->file.'"');
         }
         else {
             $content = shell_exec($this->bin()." '".$this->file."'");
+        } */
+
+        $process->run();
+        
+        if (! $process->isSuccessful()) {
+            throw new ProcessFailedException($process);
         }
+
+        $content =  $process->getOutput();
 
         // print_r($info);
         $options = explode("\n", $content);

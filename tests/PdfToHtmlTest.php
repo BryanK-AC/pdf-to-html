@@ -1,18 +1,20 @@
 <?php
 
-use Gufy\PdfToHtml\Base as PdfToHtml,
- Gufy\PdfToHtml\Config;
+namespace Tests;
 
-class PdfToHtmlTest extends \PHPUnit_Framework_TestCase
+use AccuCloud\PdfToHtml\Base as PdfToHtml;
+use AccuCloud\PdfToHtml\Config;
+
+class PdfToHtmlTest extends \PHPUnit\Framework\TestCase
 {
 	public $bin;
-	public function setUp()
+	public function setUp() : void
 	{
 		parent::setUp();
 		$this->bin = new PdfToHtml;
 
-		    Config::set('pdfinfo.bin', '/usr/bin/pdfinfo');
-		    Config::set('pdftohtml.bin', '/usr/bin/pdftohtml');
+		    Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
+		    Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
 	}
 	public function testOpen()
 	{

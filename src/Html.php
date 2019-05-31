@@ -1,14 +1,17 @@
 <?php
 
-namespace Gufy\PdfToHtml;
+namespace AccuCloud\PdfToHtml;
 
 use DOMDocument;
 use DOMNode;
 use DOMXPath;
 use PHPHtmlParser\Dom;
+use Illuminate\Filesystem\Filesystem;
+//use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class Html extends Dom
 {
+    protected $filesystem;
     protected $contents, $total_pages, $current_page, $pdf_file, $locked = false;
 
     protected $default_options = [
@@ -18,6 +21,8 @@ class Html extends Dom
 
     public function __construct($pdf_file, $options = [])
     {
+        $this->filesystem = new Filesystem();
+
         $options = array_merge($this->default_options, $options);
 
         $this->getContents($pdf_file, $options);
@@ -36,11 +41,12 @@ class Html extends Dom
         $pdf = new Base($pdf_file, $options);
         $pages = $info->getPages();
 
-        $random_dir = uniqid();
+        /* $random_dir = uniqid();
         $outputDir = Config::get('pdftohtml.output', dirname(__FILE__).'/../output/'.$random_dir);
         if (!file_exists($outputDir))
             mkdir($outputDir, 0777, true);
-        $pdf->setOutputDirectory($outputDir);
+        $pdf->setOutputDirectory($outputDir); */
+        $outputdir = $this->setOutputDirectory($pdf);
         $pdf->generate();
         $fileinfo = pathinfo($pdf_file);
         $base_path = $pdf->outputDir.'/'.$fileinfo['filename'];
@@ -63,6 +69,32 @@ class Html extends Dom
         }
         $this->contents = $contents;
         $this->goToPage(1);
+    }
+
+    /**
+     * Set the output directory for our temporary file storage.
+     *
+     * @return self
+     */
+    public function setOutputDirectory(Base &$pdf): string
+    {
+        $outputDir = Config::get('pdftohtml.output', dirname(__FILE__).'/../output/'.uniqid());
+        $this->makeDirectoryIfNotExists($outputDir);
+        $pdf->setOutputDirectory($outputDir);
+        return $outputDir;
+    }
+
+    /**
+     * Create the temporary output directory if it does not exist in the file system.
+     *
+     * @param string $outputDir
+     * @return void
+     */
+    public function makeDirectoryIfNotExists(string $outputDir): void
+    {
+        if (!$this->filesystem->exists($outputDir)) {
+            $this->filesystem->makeDirectory($outputDir, 0777, true);
+        }
     }
 
     public function goToPage($page = 1)

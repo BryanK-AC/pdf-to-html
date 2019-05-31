@@ -3,3 +3,5 @@
 /tests/phpunit_report
 /build
 .coveralls.yml
+.DS_Store
+*.cache

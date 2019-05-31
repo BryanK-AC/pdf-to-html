@@ -1,6 +1,6 @@
 <?php
 
-namespace Gufy\PdfToHtml;
+namespace AccuCloud\PdfToHtml;
 
 use Illuminate\Config\Repository;
 

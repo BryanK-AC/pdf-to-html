@@ -1,6 +1,9 @@
 <?php
 
-namespace Gufy\PdfToHtml;
+namespace AccuCloud\PdfToHtml;
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 /**
  * Class who can handle about converting pdf file to Html files
@@ -66,7 +69,16 @@ class Base
      */
     public function generate()
     {
-        $output = $this->outputDir."/".preg_replace("/\.pdf$/", "", basename($this->file)).".html";
+        //$output = $this->outputDir."/".preg_replace("/\.pdf$/", "", basename($this->file)).".html";
+
+        $args = [
+            $this->outputDir,
+            '/',
+            preg_replace("/\.pdf$/", "", basename($this->file)),
+            '.html'
+        ];
+        $output = implode('', $args);
+        
         $options = $this->generateOptions();
 
         if (PHP_OS === 'WINNT') {
