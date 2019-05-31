@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.com/BryanK-AC/pdf-to-html.svg?branch=master)](https://travis-ci.com/BryanK-AC/pdf-to-html)
-[![Coverage Status](https://coveralls.io/github/BryanK-AC/pdf-to-html/badge.svg?branch=master)](https://coveralls.io/github/BryanK-AC/pdf-to-html?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/BryanK-AC/pdf-to-html/badge.svg?branch=master)](https://coveralls.io/github/BryanK-AC/pdf-to-html?branch=master)
 
 A simple class for converting PDF files into HTML documents. This package was forked from the [original maintainer](https://github.com/mgufrone/pdf-to-html). 
 As it has since been abandoned, I've decided to migrate the package and port it so that it can be used in php 7.2+ environments.
 
-Inspriration from [garrensweet](https://github.com/garrensweet)
+Inspiration from [garrensweet](https://github.com/garrensweet)
 
 # PDF to HTML PHP Class
 
