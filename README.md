@@ -31,17 +31,21 @@ Or add this package to your `composer.json`
 ```
 
 ## Requirements
-1. Poppler-Utils (if you are using Ubuntu Distro, just install it from apt )
+1. Poppler-Utils 
+	- Ubuntu Distro, just install it from apt
 	`sudo apt-get install poppler-utils`
+	- MacOS, use [brew](https://formulae.brew.sh/formula/poppler), see OSX notes section below
+	`brew install poppler`
 2. PHP Configuration with shell access enabled
 
 ## Usage
 
-Here is the sample.
+Here is an example.
 
 ```php
 <?php
 // if you are using composer, just use this
+// not needed if your framework is already autoloading
 include 'vendor/autoload.php';
 
 // initiate
@@ -96,13 +100,17 @@ After download it, extract it. There will be a directory called `bin`. We will n
 ```php
 <?php
 // if you are using composer, just use this
+// not needed if your framework is already autoloading
 include 'vendor/autoload.php';
+
 use AccuCloud\PdfToHtml\Config;
+
 // change pdftohtml bin location
 Config::set('pdftohtml.bin', 'C:/poppler-0.37/bin/pdftohtml.exe');
 
 // change pdfinfo bin location
 Config::set('pdfinfo.bin', 'C:/poppler-0.37/bin/pdfinfo.exe');
+
 // initiate
 $pdf = new AccuCloud\PdfToHtml\Pdf('file.pdf');
 
