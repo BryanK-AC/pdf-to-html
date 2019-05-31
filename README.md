@@ -1,5 +1,5 @@
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Version on Packagist][ico-version][link-packagist]
+[![Total Downloads][ico-downloads][link-downloads]
 [![Build Status](https://travis-ci.com/BryanK-AC/pdf-to-html.svg?branch=master)](https://travis-ci.com/BryanK-AC/pdf-to-html)
 [![Coverage Status](https://coveralls.io/repos/github/BryanK-AC/pdf-to-html/badge.svg?branch=master)](https://coveralls.io/github/BryanK-AC/pdf-to-html?branch=master)
 
