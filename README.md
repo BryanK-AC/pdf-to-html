@@ -1,7 +1,10 @@
-[![Build Status](https://travis-ci.org/mgufrone/pdf-to-html.svg?branch=master)](https://travis-ci.org/mgufrone/pdf-to-html)
-[![Coverage Status](https://coveralls.io/repos/github/mgufrone/pdf-to-html/badge.svg?branch=master)](https://coveralls.io/github/mgufrone/pdf-to-html?branch=master)
+[![Build Status](https://travis-ci.com/BryanK-AC/pdf-to-html.svg?branch=master)](https://travis-ci.com/BryanK-AC/pdf-to-html)
+[![Coverage Status](https://coveralls.io/github/BryanK-AC/pdf-to-html/badge.svg?branch=master)](https://coveralls.io/github/BryanK-AC/pdf-to-html?branch=master)
 
+A simple class for converting PDF files into HTML documents. This package was forked from the [original maintainer](https://github.com/mgufrone/pdf-to-html). 
+As it has since been abandoned, I've decided to migrate the package and port it so that it can be used in php 7.2+ environments.
 
+Inspriration from [garrensweet](https://github.com/garrensweet)
 
 # PDF to HTML PHP Class
 
@@ -16,14 +19,14 @@ Please see how to use below, since it's really upgraded and things in this packa
 When you are in your active directory apps, you can just run this command to add this package on your app
 
 ```
-	composer require gufy/pdftohtml-php:~2
+	composer require bryank-ac/pdftohtml-php
 ```
 
 Or add this package to your `composer.json`
 
 ```json
 {
-	"gufy/pdftohtml-php":"~2"
+	"bryank-ac/pdftohtml-php":"~2"
 }
 ```
 
@@ -42,7 +45,7 @@ Here is the sample.
 include 'vendor/autoload.php';
 
 // initiate
-$pdf = new Gufy\PdfToHtml\Pdf('file.pdf');
+$pdf = new AccuCloud\PdfToHtml\Pdf('file.pdf');
 
 // convert to html string
 $html = $pdf->html();
@@ -63,10 +66,10 @@ $dom->goToPage(3);
 $paragraphs = $dom->find('body > p');
 
 // change pdftohtml bin location
-\Gufy\PdfToHtml\Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
+\AccuCloud\PdfToHtml\Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
 
 // change pdfinfo bin location
-\Gufy\PdfToHtml\Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
+\AccuCloud\PdfToHtml\Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
 ?>
 ```
 
@@ -94,14 +97,14 @@ After download it, extract it. There will be a directory called `bin`. We will n
 <?php
 // if you are using composer, just use this
 include 'vendor/autoload.php';
-use Gufy\PdfToHtml\Config;
+use AccuCloud\PdfToHtml\Config;
 // change pdftohtml bin location
 Config::set('pdftohtml.bin', 'C:/poppler-0.37/bin/pdftohtml.exe');
 
 // change pdfinfo bin location
 Config::set('pdfinfo.bin', 'C:/poppler-0.37/bin/pdfinfo.exe');
 // initiate
-$pdf = new Gufy\PdfToHtml\Pdf('file.pdf');
+$pdf = new AccuCloud\PdfToHtml\Pdf('file.pdf');
 
 // convert to html and return it as [Dom Object](https://github.com/paquettg/php-html-parser)
 $html = $pdf->html();
@@ -140,7 +143,7 @@ $ which pdftohtml
 /usr/local/bin/pdfinfo
 ```
 
-**4. Whatever the paths are, use ```Gufy\PdfToHtml\Config::set``` to set them in your php code**. Obviously, use the same path as the one given by the ```which``` command;
+**4. Whatever the paths are, use ```AccuCloud\PdfToHtml\Config::set``` to set them in your php code**. Obviously, use the same path as the one given by the ```which``` command;
 
 ```php
 <?php
@@ -148,13 +151,13 @@ $ which pdftohtml
 include 'vendor/autoload.php';
 
 // change pdftohtml bin location
-\Gufy\PdfToHtml\Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
+\AccuCloud\PdfToHtml\Config::set('pdftohtml.bin', '/usr/local/bin/pdftohtml');
 
 // change pdfinfo bin location
-\Gufy\PdfToHtml\Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
+\AccuCloud\PdfToHtml\Config::set('pdfinfo.bin', '/usr/local/bin/pdfinfo');
 
 // initiate
-$pdf = new Gufy\PdfToHtml\Pdf('file.pdf');
+$pdf = new AccuCloud\PdfToHtml\Pdf('file.pdf');
 
 // convert to html and return it as [Dom Object](https://github.com/paquettg/php-html-parser)
 $html = $pdf->html();
